@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.Math.abs;
 
 public class Image {
     int hauteur;
@@ -79,8 +80,39 @@ public class Image {
                     }
                 }
             }
+            bw.close();
         }catch (Exception e){
             System.out.println(e);
         }
+
+    }
+
+    public void Seuillage(int seuil){
+        for (int i=0; i<hauteur; i++){
+            for (int j=0; j<largeur; j++){
+                if (image[i][j]>=seuil){
+                    image[i][j] = 255;
+                }else{
+                    image[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    public Image Diff(Image im){
+        Image diff = new Image();
+        if ((hauteur!=im.hauteur)||(largeur!=im.largeur)){
+            System.out.println("Erreur de format");
+        }else{
+            diff.image = new int[hauteur][largeur];
+            diff.hauteur = hauteur;
+            diff.largeur = largeur;
+            for (int i=0; i<hauteur; i++){
+                for (int j=0; j<largeur; j++){
+                    diff.image[i][j] = abs(image[i][j] - im.image[i][j]);
+                }
+            }
+        }
+        return diff;
     }
 }

@@ -1,18 +1,14 @@
 package org.example;
 
-import javax.swing.*;
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
-        /*JFrame frame = new JFrame("Calculator");
-        frame.setContentPane(new inter().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);*/
         Image image = new Image();
+        Image image1 = new Image();
         image.Read("C:\\Users\\bapti\\Downloads\\ImagesTestPGM\\ImagesTestPGM\\brain.pgm");
-        System.out.println(image.image[0][1]);
+        image.Seuillage(100);
         image.Write("C:\\Users\\bapti\\Downloads\\ImagesTestPGM\\ImagesTestPGM\\a.pgm");
+        image1.Read("C:\\Users\\bapti\\Downloads\\ImagesTestPGM\\ImagesTestPGM\\brain.pgm");
+        Image diff = image.Diff(image1);
+        diff.Write("C:\\Users\\bapti\\Downloads\\ImagesTestPGM\\ImagesTestPGM\\b.pgm");
     }
 }
