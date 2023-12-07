@@ -6,11 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ImageTest {
     @Test
-    void Test(){
+    void TestRead(){
         Image image = new Image();
-        image.Read("C:\\Users\\bapti\\Downloads\\ImagesTestPGM\\ImagesTestPGM\\baboon.pgm");
-        image.Write("baboon.pgm");
+        image.Read("test.pgm");
+        assertArrayEquals(new int[]{1, 2, 3}, image.image[0]);
+        assertArrayEquals(new int[]{4, 5, 6}, image.image[1]);
+        assertArrayEquals(new int[]{7, 8, 9}, image.image[2]);
+        assertEquals(3, image.largeur);
+        assertEquals(3, image.hauteur);
     }
+
     @Test
     void EqualsTest(){
         Image image1 = new Image("brain.pgm");
