@@ -14,7 +14,11 @@ public class Image {
     int largeur;
     int[][] image;
 
-    public void Image(){}
+    public Image(){}
+
+    public Image(String file){
+        Read(file);
+    }
 
     public void Read(String file){
         try {
@@ -114,5 +118,22 @@ public class Image {
             }
         }
         return diff;
+    }
+
+    public boolean equals(Image im) {
+        boolean res = true;
+        if ((hauteur!=im.hauteur)||(largeur!=im.largeur)){
+            res = false;
+        }
+        if (res){
+            for (int i=0; i<hauteur; i++){
+                for (int j=0; j<largeur; j++){
+                    if (image[i][j] != im.image[i][j]){
+                        return false;
+                    }
+                }
+            }
+        }
+        return res;
     }
 }
